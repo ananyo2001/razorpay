@@ -41,6 +41,7 @@ public class Merchant {
 
     @Column(nullable = false,length = 200)
     @Enumerated(EnumType.STRING)
+    @Builder.Default
     private MerchantStatus status = MerchantStatus.PENDING_KYC;
 
     @Column(length = 20)

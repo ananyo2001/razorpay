@@ -1,16 +1,17 @@
 package com.ananyo.razorpay.common.entity;
 
 import jakarta.persistence.Embeddable;
+import lombok.*;
 
 @Embeddable
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
+@EqualsAndHashCode
 public class Money {
     private Integer amountUnits;
     private String currency;
-
-    private Money(int amountUnits, String currency) {
-        this.amountUnits = amountUnits;
-        this.currency = currency;
-    }
 
     public static Money of(int amountUnits, String currency) {
         return new Money(amountUnits, currency);

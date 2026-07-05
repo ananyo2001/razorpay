@@ -2,6 +2,7 @@ package com.ananyo.razorpay.merchant.service.impl;
 
 import com.ananyo.razorpay.common.enums.MerchantStatus;
 import com.ananyo.razorpay.common.enums.UserRole;
+import com.ananyo.razorpay.common.exception.DuplicateResourceException;
 import com.ananyo.razorpay.merchant.dto.request.MerchantSignupRequest;
 import com.ananyo.razorpay.merchant.dto.response.MerchantResponse;
 import com.ananyo.razorpay.merchant.entity.AppUser;
@@ -9,10 +10,11 @@ import com.ananyo.razorpay.merchant.entity.Merchant;
 import com.ananyo.razorpay.merchant.repository.AppUserRepository;
 import com.ananyo.razorpay.merchant.repository.MerchantRepository;
 import com.ananyo.razorpay.merchant.service.AuthService;
-import jakarta.transaction.Transactional;
+
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @Slf4j
@@ -25,8 +27,9 @@ public class AuthServiceImpl implements AuthService {
     @Override
     @Transactional
     public MerchantResponse signup(MerchantSignupRequest request) {
-        if (merchantRepository.existsByEmail(request.email())){
-            throw new RuntimeException("Merchant with email already exists: " + request.email());
+        if (merchantRepository.existsByEmail(request.email())) {
+            throw new DuplicateResourceException("DUPLICATE_MERCHANT_EMAIL",
+                    "Merchant with email already exists: " + request.email());
         }
 
         Merchant merchant = Merchant.builder()
@@ -34,7 +37,6 @@ public class AuthServiceImpl implements AuthService {
                 .businessType(request.businessType())
                 .name(request.name())
                 .email(request.email())
-                .status(MerchantStatus.PENDING_KYC)
                 .build();
 
         merchant = merchantRepository.save(merchant);
