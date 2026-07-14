@@ -1,5 +1,6 @@
 package com.ananyo.razorpay.merchant.entity;
 
+import com.ananyo.razorpay.common.entity.BaseEntity;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -10,12 +11,15 @@ import java.time.LocalDateTime;
 import java.util.UUID;
 
 @Entity
-@Table(name = "customer")
+@Table(name = "customer", indexes = {
+        @Index(name = "idx_customer_merchant_id", columnList = "merchant_id"),
+        @Index(name = "idx_customer_email", columnList = "email")
+})
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class Customer {
+public class Customer extends BaseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)

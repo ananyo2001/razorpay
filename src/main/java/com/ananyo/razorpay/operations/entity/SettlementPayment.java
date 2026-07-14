@@ -1,5 +1,6 @@
 package com.ananyo.razorpay.operations.entity;
 
+import com.ananyo.razorpay.common.entity.BaseEntity;
 import jakarta.persistence.*;
 import lombok.*;
 

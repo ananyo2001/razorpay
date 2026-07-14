@@ -1,5 +1,6 @@
 package com.ananyo.razorpay.payment.entity;
 
+import com.ananyo.razorpay.common.entity.BaseEntity;
 import com.ananyo.razorpay.common.entity.Money;
 import com.ananyo.razorpay.common.enums.PaymentMethod;
 import com.ananyo.razorpay.common.enums.PaymentStatus;
@@ -13,16 +14,18 @@ import org.hibernate.type.SqlTypes;
 
 import java.time.LocalDateTime;
 import java.util.Map;
-import java.util.Objects;
 import java.util.UUID;
 
 @Entity
-@Table(name = "payment")
+@Table(name = "payment", indexes = {
+        @Index(name = "idx_payment_order_id", columnList = "order_id"),
+        @Index(name = "idx_payment_merchant_id", columnList = "merchant_id")
+})
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class Payment {
+public class Payment extends BaseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
@@ -30,7 +33,7 @@ public class Payment {
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "order_id", nullable = false)
-    private OrderRecord orderRecord;
+    private OrderRecord order;
 
     @Column(nullable = false)
     private UUID merchantId;
