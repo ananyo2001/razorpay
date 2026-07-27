@@ -4,7 +4,7 @@ import com.ananyo.razorpay.common.enums.OrderStatus;
 import com.ananyo.razorpay.common.exception.BusinessRuleViolationException;
 import com.ananyo.razorpay.common.exception.DuplicateResourceException;
 import com.ananyo.razorpay.common.exception.ResourceNotFoundException;
-import com.ananyo.razorpay.merchant.dto.request.PaymentResponse;
+import com.ananyo.razorpay.payment.dto.response.PaymentResponse;
 import com.ananyo.razorpay.payment.dto.request.CreateOrderRequest;
 import com.ananyo.razorpay.payment.dto.response.OrderResponse;
 import com.ananyo.razorpay.payment.entity.OrderRecord;
@@ -23,7 +23,6 @@ import org.springframework.transaction.annotation.Transactional;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.UUID;
-import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor

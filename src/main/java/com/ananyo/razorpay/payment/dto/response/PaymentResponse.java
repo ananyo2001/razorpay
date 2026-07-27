@@ -1,4 +1,4 @@
-package com.ananyo.razorpay.merchant.dto.request;
+package com.ananyo.razorpay.payment.dto.response;
 
 import com.ananyo.razorpay.common.entity.Money;
 import com.ananyo.razorpay.common.enums.PaymentMethod;
@@ -7,7 +7,6 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 
 import java.time.LocalDateTime;
 import java.util.Map;
-import java.util.Objects;
 import java.util.UUID;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)

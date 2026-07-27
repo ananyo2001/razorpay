@@ -5,10 +5,7 @@ import com.ananyo.razorpay.common.enums.PaymentActor;
 import com.ananyo.razorpay.common.enums.PaymentEvent;
 import com.ananyo.razorpay.common.enums.PaymentStatus;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import java.time.LocalDateTime;
 import java.util.Locale;
@@ -22,6 +19,7 @@ import java.util.UUID;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@Builder
 public class PaymentTransitionLog extends BaseEntity {
 
     @Id

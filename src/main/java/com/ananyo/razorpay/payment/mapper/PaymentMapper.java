@@ -1,6 +1,6 @@
 package com.ananyo.razorpay.payment.mapper;
 
-import com.ananyo.razorpay.merchant.dto.request.PaymentResponse;
+import com.ananyo.razorpay.payment.dto.response.PaymentResponse;
 import com.ananyo.razorpay.payment.entity.Payment;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;

@@ -5,10 +5,7 @@ import com.ananyo.razorpay.common.entity.Money;
 import com.ananyo.razorpay.common.enums.PaymentMethod;
 import com.ananyo.razorpay.common.enums.PaymentStatus;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 import org.hibernate.annotations.JdbcTypeCode;
 import org.hibernate.type.SqlTypes;
 
@@ -25,6 +22,7 @@ import java.util.UUID;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
+@Builder
 public class Payment extends BaseEntity {
 
     @Id
@@ -58,6 +56,9 @@ public class Payment extends BaseEntity {
 
     @Column(length = 100)
     private String bankReference;
+
+    @Column(length = 100)
+    private String processorReference;
 
     @Column(length = 100)
     private String errorCode;
