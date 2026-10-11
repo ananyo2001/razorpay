@@ -24,7 +24,7 @@ public class OrderController {
 
     private final OrderService orderService;
 
-    UUID merchantId = UUID.fromString("8bcf5f0c-b38e-4e78-99cf-383100467ad5"); //TODO: replace it with merchant context
+    UUID merchantId = UUID.fromString("053e0303-1e6c-4457-9028-d4bcbb35d783"); //TODO: replace it with merchant context
 
     @PostMapping
     @Operation(summary = "Create an order for merchant")

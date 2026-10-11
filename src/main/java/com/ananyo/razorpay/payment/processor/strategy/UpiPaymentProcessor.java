@@ -4,7 +4,11 @@ import com.ananyo.razorpay.common.util.RandomizerUtil;
 import com.ananyo.razorpay.payment.processor.PaymentProcessor;
 import com.ananyo.razorpay.payment.processor.dto.PaymentProcessorRequest;
 import com.ananyo.razorpay.payment.processor.dto.PaymentProcessorResponse;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.stereotype.Component;
 
+@Component
+@Slf4j
 public class UpiPaymentProcessor implements PaymentProcessor {
 
     @Override
@@ -25,6 +29,6 @@ public class UpiPaymentProcessor implements PaymentProcessor {
 
         String bankRef = "BANK_REF"+RandomizerUtil.randomBase64(16);
 
-        return new PaymentProcessorResponse.Success(processorRef,bankRef);
+        return new PaymentProcessorResponse.Pending(processorRef);
     }
 }
