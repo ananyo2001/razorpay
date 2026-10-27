@@ -1,6 +1,8 @@
 package com.ananyo.razorpay.merchant.controller;
 
+import com.ananyo.razorpay.merchant.dto.request.LoginRequest;
 import com.ananyo.razorpay.merchant.dto.request.MerchantSignupRequest;
+import com.ananyo.razorpay.merchant.dto.response.LoginResponse;
 import com.ananyo.razorpay.merchant.dto.response.MerchantResponse;
 import com.ananyo.razorpay.merchant.service.AuthService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -29,5 +31,13 @@ public class AuthController {
                 authService.signup(request)
         );
     }
+
+    @PostMapping("/login")
+    public ResponseEntity<LoginResponse> login(@RequestBody @Valid LoginRequest request){
+        return ResponseEntity.status(HttpStatus.OK).body(
+                authService.login(request)
+        );
+    }
+
 
 }
