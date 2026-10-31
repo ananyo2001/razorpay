@@ -6,6 +6,7 @@ import com.ananyo.razorpay.merchant.dto.response.LoginResponse;
 import com.ananyo.razorpay.merchant.dto.response.MerchantResponse;
 import com.ananyo.razorpay.merchant.service.AuthService;
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -19,6 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/v1/auth")
 @RequiredArgsConstructor
+@SecurityRequirement(name = "bearerAuth")
 @Tag(name = "🔏Merchant Auth Services", description = "Used for Merchant authentication related services")
 public class AuthController {
 

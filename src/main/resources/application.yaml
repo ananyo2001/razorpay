@@ -15,7 +15,7 @@ spring:
 
 
 vault:
-  master-key: yksefgv25kaw7tgdukawgriyla2f1vkxvlailys62eku7ablua
+  master-key: qDesq+pkvkHgHl+Ljctb6drLJapOgjo+4YxDy68U9+s=
 
 
 payment:

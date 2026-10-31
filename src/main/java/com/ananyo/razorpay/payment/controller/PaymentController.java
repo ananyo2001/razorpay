@@ -1,8 +1,10 @@
 package com.ananyo.razorpay.payment.controller;
 
+import com.ananyo.razorpay.merchant.security.MerchantContext;
 import com.ananyo.razorpay.payment.dto.response.PaymentResponse;
 import com.ananyo.razorpay.payment.dto.request.PaymentInitRequest;
 import com.ananyo.razorpay.payment.service.PaymentService;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -15,20 +17,21 @@ import java.util.UUID;
 @RestController
 @RequestMapping("/v1/payments")
 @RequiredArgsConstructor
+@SecurityRequirement(name = "basicAuth")
 @Tag(name = "💳Payment Services", description = "Used for initiating payments")
 public class PaymentController {
 
     private final PaymentService paymentService;
-    UUID merchantId = UUID.fromString("053e0303-1e6c-4457-9028-d4bcbb35d783");
+    private final MerchantContext merchantContext;
 
     @PostMapping
     public ResponseEntity<PaymentResponse> initiate(@Valid @RequestBody PaymentInitRequest request){
         return ResponseEntity.status(HttpStatus.CREATED)
-                .body(paymentService.initiate(merchantId,request));
+                .body(paymentService.initiate(merchantContext.getMerchantId(),request));
     }
 
     @PostMapping("{paymentId}/capture")
     public ResponseEntity<PaymentResponse> capture(@PathVariable UUID paymentId){
-        return ResponseEntity.ok(paymentService.capture(merchantId,paymentId));
+        return ResponseEntity.ok(paymentService.capture(merchantContext.getMerchantId(),paymentId));
     }
 }
